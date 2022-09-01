@@ -1,0 +1,63 @@
+{
+  "$schema": "http://json-schema.org/draft-06/schema#",
+  "$ref": "#/definitions/Welcome",
+  "definitions": {
+    "Welcome": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "post code": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        },
+        "country abbreviation": {
+          "type": "string"
+        },
+        "places": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Place"
+          }
+        }
+      },
+      "required": [
+        "country",
+        "country abbreviation",
+        "places",
+        "post code"
+      ],
+      "title": "Welcome"
+    },
+    "Place": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "place name": {
+          "type": "string"
+        },
+        "longitude": {
+          "type": "string"
+        },
+        "state": {
+          "type": "string"
+        },
+        "state abbreviation": {
+          "type": "string"
+        },
+        "latitude": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "latitude",
+        "longitude",
+        "place name",
+        "state",
+        "state abbreviation"
+      ],
+      "title": "Place"
+    }
+  }
+}

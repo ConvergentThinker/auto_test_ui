@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.7.3</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+	<groupId>sakthivel</groupId>
+	<artifactId>autotestui</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>AutoTestUI</name>
+	<description>project for Automating web apps using Spring Boot from Sakthivel Iyappan</description>
+
+	<properties>
+		<java.version>11</java.version>
+		<skipCucumber>false</skipCucumber>
+		<selenium.version>4.3.0</selenium.version>
+		<cucumber.version>7.6.0</cucumber.version>
+		<spring.prof>local</spring.prof>
+		<webdrivermanager.version>5.2.2</webdrivermanager.version>
+		<restassured.version>5.1.1</restassured.version>
+		<poiji.version>3.1.1</poiji.version>
+		<lombok.version>1.18.24</lombok.version>
+		<parallelcount>1</parallelcount>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<dependencies>
+		<!-- SPRING DEPENDENCIES -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-logging</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-log4j2</artifactId>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.fusesource.jansi/jansi -->
+		<dependency>
+			<groupId>org.fusesource.jansi</groupId>
+			<artifactId>jansi</artifactId>
+			<version>2.4.0</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/com.asprise.ocr/java-ocr-api -->
+		<dependency>
+			<groupId>com.asprise.ocr</groupId>
+			<artifactId>java-ocr-api</artifactId>
+			<version>15.3.0.3</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- WEBDRIVER DEPENDENCIES -->
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-java</artifactId>
+			<version>${selenium.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>io.github.bonigarcia</groupId>
+			<artifactId>webdrivermanager</artifactId>
+			<version>${webdrivermanager.version}</version>
+		</dependency>
+
+		<!-- API TESTING DEPENDENCIES -->
+		<dependency>
+			<groupId>io.rest-assured</groupId>
+			<artifactId>rest-assured</artifactId>
+			<version>${restassured.version}</version>
+			<scope>test</scope>
+			<exclusions><!-- https://www.baeldung.com/maven-version-collision -->
+				<exclusion>
+					<groupId>org.apache.groovy</groupId>
+					<artifactId>groovy</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.apache.groovy</groupId>
+					<artifactId>groovy-xml</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>io.rest-assured</groupId>
+			<artifactId>json-schema-validator</artifactId>
+			<version>${restassured.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- BDD DEPENDENCIES -->
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-java</artifactId>
+			<version>${cucumber.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-testng</artifactId>
+			<version>${cucumber.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-spring</artifactId>
+			<version>${cucumber.version}</version>
+		</dependency>
+
+		<!-- HELPER DEPENDENCIES -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>${lombok.version}</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.github.ozlerhakan</groupId>
+			<artifactId>poiji</artifactId>
+			<version>${poiji.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>ru.yandex.qatools.ashot</groupId>
+			<artifactId>ashot</artifactId>
+			<version>1.5.4</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-test</artifactId>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.apache.pdfbox/pdfbox -->
+		<dependency>
+			<groupId>org.apache.pdfbox</groupId>
+			<artifactId>pdfbox</artifactId>
+			<version>2.0.1</version>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+		<testResources>
+			<testResource>
+				<directory>src/test/resources</directory>
+				<filtering>true</filtering>
+			</testResource>
+		</testResources>
+
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<classifier>exec</classifier>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>3.2.0</version>
+				<configuration>
+					<nonFilteredFileExtensions> <!-- only text file like properties (UTF-8) can be read -->
+						<nonFilteredFileExtension>numbers</nonFilteredFileExtension>
+						<nonFilteredFileExtension>xlsx</nonFilteredFileExtension>
+						<nonFilteredFileExtension>exe</nonFilteredFileExtension>
+						<nonFilteredFileExtension>jar</nonFilteredFileExtension>
+					</nonFilteredFileExtensions>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<printSummary>true</printSummary>
+					<!-- set to true, so that it will not stop the report generation at masterthought plugin -->
+					<testFailureIgnore>true</testFailureIgnore>
+					<properties>
+						<property>
+							<name>dataproviderthreadcount</name>
+							<value>${parallelcount}</value>
+						</property>
+					</properties>
+					<includes>
+						<include>
+							org.autotestui.TestRunner
+						</include>
+					</includes>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>net.masterthought</groupId>
+				<artifactId>maven-cucumber-reporting</artifactId>
+				<version>5.5.4</version>
+				<executions>
+					<execution>
+						<id>execution</id>
+						<phase>test</phase>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<skip>${skipCucumber}</skip>
+							<skipEmptyJSONFiles>true</skipEmptyJSONFiles>
+							<projectName>Innovative</projectName>
+							<outputDirectory>${project.build.directory}/TEST-RESULT/cucumber-report</outputDirectory>
+							<inputDirectory>${project.build.directory}</inputDirectory>
+							<jsonFiles>
+								<jsonFile>**/cucumber-result.json</jsonFile>
+							</jsonFiles>
+							<mergeFeaturesWithRetest>true</mergeFeaturesWithRetest>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>com.trivago.rta</groupId>
+				<artifactId>cluecumber-report-plugin</artifactId>
+				<version>2.7.1</version>
+				<executions>
+					<execution>
+						<id>report</id>
+						<phase>test</phase>
+						<goals>
+							<goal>reporting</goal>
+						</goals>
+					</execution>
+
+				</executions>
+				<configuration>
+					<sourceJsonReportDirectory>${project.build.directory}/TEST-RESULT</sourceJsonReportDirectory>
+					<generatedHtmlReportDirectory>${project.build.directory}/TEST-RESULT/cluecumber-report/
+					</generatedHtmlReportDirectory>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<profiles>
+		<!-- DEFAULT LOCAL PROFILE -->
+		<profile>
+			<id>local</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<spring.profiles.active>none</spring.profiles.active>
+				<parallelcount>1</parallelcount>
+			</properties>
+		</profile>
+
+		<profile>
+			<id>uat</id>
+			<properties>
+				<spring.profiles.active>uat</spring.profiles.active>
+				<parallelcount>5</parallelcount>
+			</properties>
+		</profile>
+
+		<profile>
+			<id>sit</id>
+			<properties>
+				<spring.profiles.active>sit</spring.profiles.active>
+				<parallelcount>5</parallelcount>
+			</properties>
+		</profile>
+
+		<profile>
+			<id>remote-uat</id>
+			<properties>
+				<spring.profiles.active>uat,remote</spring.profiles.active>
+				<parallelcount>10</parallelcount>
+			</properties>
+		</profile>
+
+		<profile>
+			<id>remote-sit</id>
+			<properties>
+				<spring.profiles.active>sit,remote</spring.profiles.active>
+				<parallelcount>10</parallelcount>
+			</properties>
+		</profile>
+
+		<profile>
+			<id>testframework</id>
+			<properties>
+				<spring.profiles.active>testframework</spring.profiles.active>
+				<parallelcount>100</parallelcount>
+			</properties>
+		</profile>
+
+	</profiles>
+
+
+</project>

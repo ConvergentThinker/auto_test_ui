@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--ref: https://logging.apache.org/log4j/2.x/manual/layouts.html-->
+<Configuration status="WARN">
+    <Appenders>
+<!--        <Console name="LogToConsole" target="SYSTEM_OUT">-->
+<!--            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%-5level] [%c{.1}] -  %m%n%rEx{full,-->
+<!--            filters(-->
+<!--            org.springframework.beans.factory,-->
+<!--            org.springframework.cglib,-->
+<!--            org.springframework.context,-->
+<!--            io.cucumber.junit,-->
+<!--            io.cucumber.spring,-->
+<!--            io.cucumber.core,-->
+<!--            com.intellij.rt,-->
+<!--            $$EnhancerBySpring)-->
+<!--            }"/>-->
+<!--        </Console>-->
+        <Console name="LogToConsole" target="SYSTEM_OUT" follow="true">
+            <PatternLayout pattern="%highlight{%d{HH:mm:ss.SSS/zzz} [%-5level] [%c{.1} - %method:%line] -  %m%n%rEx{full}}{FATAL=white, ERROR=red, WARN=blue, INFO=black, DEBUG=green, TRACE=blue}" disableAnsi="false"/>
+        </Console>
+
+        <RollingFile name="LogToRollingFile"
+                     fileName="debuglogs/app_latest.log"
+                     filePattern="debuglogs/archive/app_%d{dd-MMM-yyyy}-%i.log">
+            <PatternLayout header="Test Framework Logging are marked with [IAF] tags%n"
+                           pattern="%highlight{%d{HH:mm:ss.SSS/zzz} [%t] [%-5level] [%c - %method:%line] - %msg%n}{FATAL=white, ERROR=red, WARN=blue, INFO=black, DEBUG=green, TRACE=blue}" disableAnsi="true"/>
+            <Policies>
+                <OnStartupTriggeringPolicy/>
+                <TimeBasedTriggeringPolicy/>
+                <SizeBasedTriggeringPolicy size="20 MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="20"/>
+        </RollingFile>
+    </Appenders>
+    <Loggers>
+        <Logger name="com.autotestui" level="info" additivity="false">
+            <AppenderRef ref="LogToConsole"/>
+            <AppenderRef ref="LogToRollingFile"/>
+        </Logger>
+        <Logger name="org.testcontainers" level="info" additivity="false">
+            <AppenderRef ref="LogToConsole"/>
+            <AppenderRef ref="LogToRollingFile"/>
+        </Logger>
+        <Logger name="com.github.dockerjava" level="info" additivity="false">
+            <AppenderRef ref="LogToConsole"/>
+            <AppenderRef ref="LogToRollingFile"/>
+        </Logger>
+        <Root level="error">
+            <AppenderRef ref="LogToConsole"/>
+            <AppenderRef ref="LogToRollingFile"/>
+        </Root>
+    </Loggers>
+</Configuration>

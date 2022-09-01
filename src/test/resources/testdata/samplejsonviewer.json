@@ -1,0 +1,28 @@
+{
+  "postCode": "56000",
+  "country": "Malaysia",
+  "countryAbbreviation": "MY",
+  "places": [
+    {
+      "placeName": "Cheras",
+      "longitude": "101.7253",
+      "state": "Kuala Lumpur",
+      "stateAbbreviation": "KUL",
+      "latitude": "3.1056"
+    },
+    {
+      "placeName": "Kuala Lumpur",
+      "longitude": "101.718",
+      "state": "Kuala Lumpur",
+      "stateAbbreviation": "KUL",
+      "latitude": "3.106"
+    },
+    {
+      "placeName": "Cheras",
+      "longitude": "101.7512",
+      "state": "Selangor",
+      "stateAbbreviation": "SGR",
+      "latitude": "3.0445"
+    }
+  ]
+}
