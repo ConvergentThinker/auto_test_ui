@@ -1,0 +1,45 @@
+package org.autotestui.model;
+
+import com.poiji.annotation.ExcelCellName;
+import com.poiji.annotation.ExcelSheet;
+import lombok.Data;
+import lombok.ToString;
+import org.autotestui.interfaces.ScenarioModel;
+import java.util.Date;
+import java.util.List;
+
+@Data
+@ExcelSheet("ExcelBasicScenario")
+public class BasicFrameworkModel implements ScenarioModel {
+    @ExcelCellName("Scenario")
+    private String scenario;
+
+    @ExcelCellName("String Data")
+    private String strData;
+
+    @ExcelCellName("Default Data")
+    private String defaultData = "Default value";
+
+    @ExcelCellName("Integer Data")
+    private int intData;
+
+    @ExcelCellName("Float Data")
+    private float floatData;
+
+    @ExcelCellName("Boolean Data")
+    private boolean boolData;
+
+    @ExcelCellName("Date Data")
+    private Date dateData;
+
+    @ExcelCellName("Email Data")
+    private String emailData;
+
+    @ExcelCellName("Multi Data")
+    private List<String> multiData;
+
+    // Learn: Lombok ToString.Exclude
+    @ExcelCellName("Expected Result")
+    @ToString.Exclude
+    private String expectedResult;
+}
