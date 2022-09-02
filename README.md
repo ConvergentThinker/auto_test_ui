@@ -1,6 +1,7 @@
-#  Test Framework
 
-`Write less code & Achieve more` In your Test Automation Framework.The aim of this framework is to use Spring Boot to create a test automation framework for your functional tests with Selenium Java and Cucumber with TestNG.
+# `Write less code & Achieve more` In your Test Automation Framework.
+
+The aim of this framework is to use Spring Boot to create a test automation framework for your functional tests with Selenium Java and Cucumber with TestNG.
 
 - **Spring Boot** is a popular application development framework in the Java community. Spring Boot simplifies the developer life by handling most of the routine activities.
 - **Dependency Injection** : Easy to create specific objects in our Page Objects, test classes automatically. Spring will just give it to you!!
