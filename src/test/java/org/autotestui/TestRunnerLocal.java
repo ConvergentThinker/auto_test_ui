@@ -6,7 +6,7 @@ import io.cucumber.testng.CucumberOptions;
 @CucumberOptions(
         features = "classpath:features",
         glue = "org.autotestui",
-        tags = "@ExcelRead",
+        tags = "@Framework",
         plugin = {
                 "pretty",
                 "json:target/TEST-RESULT/cucumber-result.json",

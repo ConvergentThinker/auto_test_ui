@@ -10,7 +10,7 @@ import java.util.function.Predicate;
 @CucumberOptions(
         features = "classpath:features",
         glue = "org.autotestui",
-        tags = "@UITest",
+        tags = "@Framework",
         plugin = {
                 "pretty",
                 "json:target/TEST-RESULT/cucumber-result.json",
