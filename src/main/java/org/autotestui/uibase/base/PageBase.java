@@ -2,7 +2,6 @@ package org.autotestui.uibase.base;
 
 
 import lombok.extern.slf4j.Slf4j;
-import org.autotestui.utilities.PageAction;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +15,6 @@ import javax.annotation.PreDestroy;
  * @author Sakthivel I
  * @since 01 Sep 2022
  */
-
 
 @Slf4j
 public abstract class PageBase {
@@ -45,10 +43,6 @@ public abstract class PageBase {
 
     @Value("${spring.profiles.active}")
     protected String currentEnvironment;
-
-    @Autowired
-    protected PageAction pageAction;
-
 
     protected String getTitle() {
         return webDriver.getTitle();

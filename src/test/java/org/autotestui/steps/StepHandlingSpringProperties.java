@@ -32,7 +32,6 @@ public class StepHandlingSpringProperties {
     @Value("${browser}")
     String browser;
 
-
     @Given("Test application started with profile")
     public void testApplicationStartedWithProfile() {
         System.out.println("::: [FRAMEWORK] - CURRENT PROPERTIES = " + currentProps);
@@ -44,7 +43,6 @@ public class StepHandlingSpringProperties {
         System.out.println("::: [FRAMEWORK] - RUN METHOD         = " + runMethod);
         System.out.println("::: [FRAMEWORK] - GRID HUB URL       = " + gridHub);
         System.out.println("::: [FRAMEWORK] - GRID HUB PORT      = " + gridPort);
-
 
     }
 }

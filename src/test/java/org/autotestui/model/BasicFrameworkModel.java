@@ -11,14 +11,9 @@ import java.util.List;
 @Data
 @ExcelSheet("ExcelBasicScenario")
 public class BasicFrameworkModel implements ScenarioModel {
+
     @ExcelCellName("Scenario")
     private String scenario;
-
-    @ExcelCellName("String Data")
-    private String strData;
-
-    @ExcelCellName("Default Data")
-    private String defaultData = "Default value";
 
     @ExcelCellName("Integer Data")
     private int intData;
@@ -26,20 +21,4 @@ public class BasicFrameworkModel implements ScenarioModel {
     @ExcelCellName("Float Data")
     private float floatData;
 
-    @ExcelCellName("Boolean Data")
-    private boolean boolData;
-
-    @ExcelCellName("Date Data")
-    private Date dateData;
-
-    @ExcelCellName("Email Data")
-    private String emailData;
-
-    @ExcelCellName("Multi Data")
-    private List<String> multiData;
-
-    // Learn: Lombok ToString.Exclude
-    @ExcelCellName("Expected Result")
-    @ToString.Exclude
-    private String expectedResult;
 }

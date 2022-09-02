@@ -1,17 +1,7 @@
-@FrameworkUI
+@Framework
 Feature: Handling UI Basic Functionality
 
-  @UITest1 @GoogleSearch
-  Scenario Outline: Searching items on google
-    Given : User on main application page
-    When User search for "<Keyword>" on google
-    Then User should see at least <Count> result
-    Examples:
-      | Keyword                  | Count |
-      | Hello World!             | 3     |
-      | dodonanaldldtrtrumpumptt | 0     |
-
-  @UITest @UIRegistration @serial
+  @UITest @UIRegistration
   Scenario Outline: User should be able to submit visa form
     Given User on UI registration form
     When User select from country "<fromCountry>" and to country "<toCountry>"

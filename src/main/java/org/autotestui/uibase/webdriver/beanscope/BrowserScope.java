@@ -24,8 +24,4 @@ public class BrowserScope extends SimpleThreadScope {
         return objDriver;
     }
 
-    @Override
-    public void registerDestructionCallback(String name, Runnable callback) {
-        // super.registerDestructionCallback(name, callback);
-    }
 }

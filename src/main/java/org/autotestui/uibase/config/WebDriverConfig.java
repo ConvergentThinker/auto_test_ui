@@ -32,7 +32,6 @@ public class WebDriverConfig {
     @Scope("BROWSER-SCOPE")
     @ScenarioScope
     public WebDriver getWebDriver() {
-        // World.NoBrowser is determined in HookBase during @Before
         if (World.NoBrowser) {
             throw new NoBrowserConfigurationException("WebDriver is requested from test that is tagged with @nobrowser, please check your feature file");
         }
