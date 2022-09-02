@@ -18,8 +18,6 @@ import java.util.List;
 public class ChromeConfig {
 
     // todo - configure this later
-
     private List<String> args;
-
 
 }

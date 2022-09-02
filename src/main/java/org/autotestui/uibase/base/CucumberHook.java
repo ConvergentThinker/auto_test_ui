@@ -23,7 +23,6 @@ import java.util.List;
  * @since 01 Sep 2022
  */
 
-
 @Slf4j
 public class CucumberHook {
 
@@ -66,11 +65,6 @@ public class CucumberHook {
             World.ForceBrowser = "auto";
         }
 
-        // taking screenshot before each step must have:
-        // 1. screenshot.event = not off
-        // 2. screenshot.target = all
-        // 3. screenshot.frequency = all OR scenario
-        // 4. exclude all :nobrowser test (no screenshot if no browser, duh)
         if (!screenshotEvent.trim().equalsIgnoreCase("off") && !World.NoBrowser) {
             if (screenshotFrequency.trim().equalsIgnoreCase("all")
                     && (screenshotTarget.trim().equalsIgnoreCase("all")
@@ -87,28 +81,17 @@ public class CucumberHook {
 
     @After(order = 1)
     public void tearDown(Scenario scenario) {
-//        World.NoBrowser = scenario.getSourceTagNames()
-//                .stream()
-//                .anyMatch(t -> t.equalsIgnoreCase(":nobrowser"));
-
-        // if no tag, it'll assume it's browser test.
         if (!World.NoBrowser || scenario.getSourceTagNames().size() == 0) {
             WebDriver d = appCtx.getBean(WebDriver.class);
             if (isTerminate) {
                 log.info("Terminating browser {}", d);
                 d.quit();
             }
-
         }
     }
 
     @After(order = 2)
     public void afterScenario(Scenario scenario) throws IOException {
-        // taking screenshot after each step must have:
-        // 1. screenshot.event = NOT off
-        // 2. screenshot.target = all OR scenario
-        // 3. screenshot.frequency = all OR after
-        // 4. exclude all :nobrowser test (no screenshot if no browser, duh)
         if (!screenshotEvent.trim().equalsIgnoreCase("off") && !World.NoBrowser) {
             if ((screenshotFrequency.trim().equalsIgnoreCase("all")
                     || screenshotFrequency.trim().equalsIgnoreCase("after"))
@@ -127,11 +110,6 @@ public class CucumberHook {
 
     @BeforeStep
     public void beforeStep(Scenario scenario) throws IOException {
-        // taking screenshot before each step must have:
-        // 1. screenshot.event = not off
-        // 2. screenshot.target = all
-        // 3. screenshot.frequency = all
-        // 4. exclude all :nobrowser test (no screenshot if no browser, duh)
         if (!screenshotEvent.trim().equalsIgnoreCase("off") && !World.NoBrowser) {
             if (screenshotFrequency.trim().equalsIgnoreCase("all")
                     && screenshotTarget.trim().equalsIgnoreCase("all")) {
@@ -147,11 +125,6 @@ public class CucumberHook {
 
     @AfterStep
     public void afterStep(Scenario scenario) throws IOException {
-        // taking screenshot after each step must have:
-        // 1. screenshot.event = NOT off
-        // 2. screenshot.target = all
-        // 3. screenshot.frequency = all OR after
-        // 4. exclude all :nobrowser test (no screenshot if no browser, duh)
         if (!screenshotEvent.trim().equalsIgnoreCase("off") && !World.NoBrowser) {
             if ((screenshotFrequency.trim().equalsIgnoreCase("all")
                     || screenshotFrequency.trim().equalsIgnoreCase("after"))

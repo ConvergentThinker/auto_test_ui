@@ -59,29 +59,20 @@ public class BrowserFactory {
 
     public WebDriver getWebDriver() {
 
-        System.out.println("runMethod "+ runMethod);
 
         switch (runMethod.toUpperCase().trim()) {
 
-
             case "LOCAL":
-                log.info("Run test in LOCAL");
                 actualBrowser = browserType;
                 if (!World.ForceBrowser.equalsIgnoreCase("auto")) {
-                    System.out.println("::: Following force which is = " + World.ForceBrowser);
                     actualBrowser = World.ForceBrowser;
                 }
                 if ("FIREFOX".equalsIgnoreCase(actualBrowser)) {
                     WebDriverManager.firefoxdriver().setup();
                     return new FirefoxDriver();
                 } else if ("CHROME".equalsIgnoreCase(actualBrowser)) {
-                    // if below path returns null pointer, please ensure you have executed `mvn clean test` at least once to ensure target directory contains the webdriver.exe
                     System.setProperty("webdriver.chrome.driver", Objects.requireNonNull(getClass().getClassLoader().getResource(chromeDriverLocation)).getFile());
-
-                    log.debug("[IAF] Web Driver location : '{}'" , System.getProperty("webdriver.chrome.driver"));
                     ChromeOptions chromeOptions = new ChromeOptions();
-
-                    // todo - separate into reusable methods
                     // -- Chrome Arguments
                     if (env.getProperty("chrome.args.enabled").equalsIgnoreCase("true")) {
                         String[] args = env.getProperty("chrome.args").split(" ");
@@ -117,15 +108,11 @@ public class BrowserFactory {
                         chromeOptions.setExperimentalOption("prefs", chromePrefs);
                     }
 
-                    log.debug("[IAF] Chrome Preferences \t: [{}]", chromePrefs);
-
                     return new ChromeDriver(chromeOptions);
                 } else {
                     return new ChromeDriver();
                 }
             case "REMOTE":
-
-                log.info("[IAF] Run test in REMOTE");
 
                 actualBrowser = browserType;
                 if (!World.ForceBrowser.equalsIgnoreCase("auto")) {
@@ -139,23 +126,16 @@ public class BrowserFactory {
                     RemoteWebDriver remoteWebDriver = null;
                     FirefoxOptions opts = new FirefoxOptions();
                     opts.setHeadless(true);
-
-                    //todo - works in sel3 but not sel4
-//                    DesiredCapabilities caps = DesiredCapabilities.firefox();
-//                    opts.merge(caps);
                     try {
                         remoteWebDriver = new RemoteWebDriver(new URL(hubURL), opts);
                         remoteWebDriver.setFileDetector(new LocalFileDetector());
                     } catch (MalformedURLException ex) {
-
                         log.error(" Failed to establish Remote WebDriver with URL '{}'. Hint: Invalid URL format!", this.hubURL, ex);
                     }
                     return remoteWebDriver;
                 } else if ("CHROME".equalsIgnoreCase(actualBrowser)) {
                     RemoteWebDriver remoteWebDriver = null;
-                    //todo - works in sel3 but not sel4
                     ChromeOptions opts = new ChromeOptions();
-
                     DesiredCapabilities caps = new DesiredCapabilities();
                     caps.setCapability(ChromeOptions.CAPABILITY, opts);
                     caps.setPlatform(Platform.ANY);
@@ -166,7 +146,6 @@ public class BrowserFactory {
                     caps.setCapability("visual", true); // To enable step by step screenshot
                     caps.setCapability("video", true); // To enable video recording
                     caps.setCapability("console", true); // To capture console logs
-
                     opts.merge(caps);
                     opts.setHeadless(true);
                     try {
@@ -174,7 +153,6 @@ public class BrowserFactory {
                         remoteWebDriver.setFileDetector(new LocalFileDetector());
                     } catch (MalformedURLException ex) {
                         log.error(" Failed to establish Remote WebDriver with URL '{}'. Hint: Invalid URL format!", this.hubURL, ex);
-
                     }
                     return remoteWebDriver;
                 } else {

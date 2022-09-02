@@ -7,8 +7,6 @@ import org.springframework.stereotype.Indexed;
 import java.lang.annotation.*;
 
 /**
- * Collection of annotation that build a Page Object.
- *
  * @author Sakthivel I.
  * @since 01 Sep 2022
  */

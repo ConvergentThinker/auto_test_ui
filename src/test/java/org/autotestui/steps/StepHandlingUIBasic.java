@@ -5,7 +5,6 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.autotestui.annotation.Page;
-import org.autotestui.pageobject.PageGoogle;
 import org.autotestui.pageobject.PageUIRegistration;
 import org.autotestui.uibase.base.StepBase;
 
@@ -18,9 +17,6 @@ public class StepHandlingUIBasic extends StepBase {
 
     @Page
     private PageUIRegistration registrationPg;
-
-    @Page
-    private PageGoogle pgGoogle;
 
     @Given("User on UI registration form")
     public void launchSite() {
@@ -62,13 +58,4 @@ public class StepHandlingUIBasic extends StepBase {
         assertThat("Registration number is not displayed!", registrationPg.getConfirmationNo().trim(), not(emptyString()));
     }
 
-    @When("User search for {string} on google")
-    public void userSearchForOnGoogle(String query) {
-        pgGoogle.search(query);
-    }
-
-    @Then("User should see at least {int} result")
-    public void userShouldSeeAtLeastResult(int count) {
-        assertThat("Google search result mismatch!", pgGoogle.getResultCount(), greaterThanOrEqualTo(count));
-    }
 }

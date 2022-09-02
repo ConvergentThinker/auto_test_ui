@@ -32,25 +32,16 @@ public class StepHandlingExcel extends StepBase {
         this.currentScenario = scenarioName;
         System.out.println("Data for : " + scenarioName);
         frameworkModel = generalUtils.getData(lstBasicFrameworkModel, scenarioName, BasicFrameworkModel.class);
-        System.out.println(" > " + frameworkModel.toString());
-
+        System.out.println(" > Excel Row : " + frameworkModel.toString());
     }
 
-    // Learn: Hamcrest hasProperty, equalTo, is, allOf
-    @Then("Excel data is mapped correctly with java object")
-    public void excelDataIsMappedCorrectlyWithJavaObject() {
-        if (currentScenario.contains("TC10")) {
-            assertThat(frameworkModel, allOf(
-                    hasProperty("strData", equalTo("12345")),
-                    hasProperty("intData", equalTo(0)),
-                    hasProperty("floatData", equalTo(0.0F)),
-                    hasProperty("boolData", is(false)),
-                    hasProperty("dateData"),
-                    hasProperty("emailData", equalTo("1234")),
-                    hasProperty("multiData", hasSize(0))
-            ));
-        } else {
-            assertThat("Object ToString mismatch!", frameworkModel.toString(), equalTo(frameworkModel.getExpectedResult()));
-        }
+
+    @Then("Read Excel data is mapped  with java object in Model BasicFrameworkModel")
+    public void readExcelDataIsMappedWithJavaObjectInModelBasicFrameworkModel() {
+
+        System.out.println("Data from Excel : " + frameworkModel.getScenario());
+        System.out.println("Data from Excel : " + frameworkModel.getIntData());
+        System.out.println("Data from Excel : " + frameworkModel.getFloatData());
+
     }
 }

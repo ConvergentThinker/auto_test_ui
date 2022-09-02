@@ -1,19 +1,10 @@
 Feature: Framework handling excel with Poiji
 
-  @Framework @ExcelRead @nobrowser @P0
+  @Framework @ExcelRead @nobrowser
   Scenario Outline: Basic Excel Handling - Row Wise [<Scenario>]
     Given User load excel data to POJO
     When User select scenario "<Scenario>"
-    Then Excel data is mapped correctly with java object
+    Then Read Excel data is mapped  with java object in Model BasicFrameworkModel
     Examples:
       | Scenario          |
       | TC1-BasicDataType |
-      | TC2-MissingData   |
-      | TC3-MissingData   |
-      | TC4-MissingData   |
-      | TC5-MissingData   |
-      | TC6-MissingData   |
-      | TC7-MissingData   |
-      | TC8-MissingData   |
-      | TC9-MissingData   |
-      | TC10-NegativeData |

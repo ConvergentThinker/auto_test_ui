@@ -3,8 +3,10 @@ package org.autotestui.pageobject;
 
 import org.autotestui.annotation.PageObject;
 import org.autotestui.uibase.base.PageBase;
+import org.autotestui.utilities.PageAction;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDate;
 
@@ -47,6 +49,9 @@ public class PageUIRegistration extends PageBase {
     @FindBy(id = "requestnumber")
     private WebElement requestNumber;
 
+    @Autowired
+    private PageAction pageAction;
+
 
     // Sample overriding but selecting specific environment
     public void goTo() {
@@ -74,9 +79,6 @@ public class PageUIRegistration extends PageBase {
         pageAction.dropDownSelectByText(year, String.valueOf(localDate.getYear()))
                 .dropDownSelectByValue(month, localDate.getMonth().toString())
                 .dropDownSelectByText(day, String.valueOf(localDate.getDayOfMonth()));
-//        new Select(year).selectByVisibleText(String.valueOf(localDate.getYear()));
-//        new Select(month).selectByValue(localDate.getMonth().toString());
-//        new Select(day).selectByVisibleText(String.valueOf(localDate.getDayOfMonth()));
     }
 
     public void setContactDetails(String email, String phone) {

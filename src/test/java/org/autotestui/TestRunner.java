@@ -10,7 +10,7 @@ import java.util.function.Predicate;
 @CucumberOptions(
         features = "classpath:features",
         glue = "org.autotestui",
-        tags = "@FrameworkUI",
+        tags = "@Framework",
         plugin = {
                 "pretty",
                 "json:target/TEST-RESULT/cucumber-result.json",
@@ -19,14 +19,11 @@ import java.util.function.Predicate;
                 "rerun:target/TEST-RESULT/rerun.txt"
         }
 )
-public class TestRunner { //} extends AbstractTestNGCucumberTests {
+public class TestRunner {
 
     private TestNGCucumberRunner testNGCucumberRunner;
-
-    private static final Predicate<Pickle> isSerial2 = p -> p.getTags().contains("@serial") || p.getTags().contains("@Serial");
     private static final Predicate<Pickle> isSerial = p ->
             p.getTags().stream().anyMatch(p1 -> p1.equalsIgnoreCase("@serial") || p1.equalsIgnoreCase("@chrome") || p1.equalsIgnoreCase("@firefox"));
-
     @BeforeClass(
             alwaysRun = true
     )
