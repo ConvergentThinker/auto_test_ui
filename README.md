@@ -25,7 +25,7 @@ The aim of this framework is to use Spring Boot to create a test automation fram
 - `mvn clean test -Dparallelcount=10 -Dcucumber.filter.tags="@Framework" `  -> run with 10 threads and on default chrome
 - `mvn clean test  -P uat -Dparallelcount=10 -Dcucumber.filter.tags="@Framework" `  -> run with 10 threads in UAT env and on default chrome
 - `TestRunner.java` is meant to be run from CLI with `mvn clean test`
-    - this will detect the `@income:serial` and run accordingly
+    - this will detect the `@serial` and run accordingly
 
 ### UI - Directly from feature file (scenario -> run) or Runner File
 
